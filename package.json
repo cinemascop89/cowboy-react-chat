@@ -1,0 +1,18 @@
+{
+  "name": "chat",
+  "version": "1.0.0",
+  "description": "A simple chat made with React.js and cowboy",
+  "main": "index.js",
+  "dependencies": {
+    "babel-preset-react": "^6.3.13",
+    "babelify": "^7.2.0",
+    "react": "^0.14.6",
+    "react-dom": "^0.14.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Eduardo Veiga",
+  "license": "ISC"
+}

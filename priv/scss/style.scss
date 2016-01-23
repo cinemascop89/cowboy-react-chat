@@ -1,0 +1,92 @@
+$background-color: #fff;
+$main-color: #555;
+$muted-color: #ccc;
+
+html, body {
+  height: 100%;
+}
+
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+               box-sizing: inherit;
+             }
+
+#app {
+  height: 100%;
+  overflow: hidden;
+}
+
+.wrapper {
+  font-size: 1.1em;
+  font-family: Consolas,"Liberation Mono",Menlo,Courier,monospace;
+  height: 100%;
+  overflow: hidden;
+
+  .conversation {
+    $line-height: 25px;
+    height: 100%;
+    width: 85%;
+    padding-bottom: $line-height;
+    position: relative;
+    float: left;
+
+    .messages {
+      height: 100%;
+      overflow-x: hidden;
+      overflow-y: auto;
+
+      .message {
+        min-height: $line-height;
+
+        .timestamp {
+          display: inline-block;
+          width: 80px;
+          text-align: center;
+          color: $muted-color;
+        }
+        .author {
+          word-wrap: break-word;
+          display: inline-block;
+          width: 100px;
+          text-align: right;
+          font-weight: bold;
+        }
+        .message {
+        }
+      }
+    }
+
+    .message-input {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: $line-height;
+
+      .username {
+        width: 170px;
+        display: inline-block;
+        float: left;
+        text-align: right;
+        font-weight: bold;
+      }
+      input {
+        height: 100%;
+        width: 80%;
+        border: none;
+        display:inline-block;
+        float: left;
+      }
+    }
+  }
+
+  .user-list {
+    height: 100%;
+    width: 15%;
+    border-left: 1px solid $main-color;
+    float:left;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+}

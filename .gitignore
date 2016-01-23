@@ -1,0 +1,6 @@
+*.beam
+node_modules/
+deps
+_rel
+relx
+.erlang.mk

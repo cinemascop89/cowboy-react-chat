@@ -50,6 +50,11 @@ html {
         float: left;
         text-align: right;
         font-weight: bold; }
+        .wrapper .conversation .message-input .username:hover {
+          border: 1px solid #ccc; }
+        .wrapper .conversation .message-input .username input {
+          text-align: inherit;
+          width: 100%; }
       .wrapper .conversation .message-input input {
         height: 100%;
         width: 80%;

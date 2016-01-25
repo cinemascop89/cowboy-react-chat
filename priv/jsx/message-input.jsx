@@ -1,4 +1,5 @@
 var React = require('react');
+var Username = require('./username.jsx').Username;
 
 exports.MessageInput = React.createClass({
     getInitialState: function() {
@@ -18,7 +19,8 @@ exports.MessageInput = React.createClass({
     render: function() {
         return (
             <div className="message-input">
-                <span className="username">{this.props.username}</span>
+                <Username username={this.props.username}
+                          onUsernameChange={this.props.onUsernameChange}/>
                 <form onSubmit={this.handleSubmit}>
                     <input value={this.state.message}
                            onChange={this.handleChange}

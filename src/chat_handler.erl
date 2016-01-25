@@ -37,6 +37,9 @@ websocket_handle({text, Json}, Req, #state{username=Username} = State) ->
                        State;
                    <<"join">> ->
                        chat_event_message:join(Data),
+                       State#state{username=Data};
+                   <<"rename">> ->
+                       chat_event_message:rename(Username, Data),
                        State#state{username=Data}
                end,
     {ok, Req, NewState};
@@ -55,6 +58,11 @@ websocket_info({message, #message{timestamp=Timestamp,
     {reply, {text, Encoded}, Req, State};
 websocket_info({join, User}, Req, State) ->
     Encoded = encode_msg(join, User),
+    {reply, {text, Encoded}, Req, State};
+websocket_info({rename, User, NewUser}, Req, State) ->
+    Message = #{<<"username">> => User,
+                <<"newUsername">> => NewUser},
+    Encoded = encode_msg(rename, Message),
     {reply, {text, Encoded}, Req, State};
 websocket_info(_Info, Req, State) ->
     {ok, Req, State}.

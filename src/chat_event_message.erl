@@ -11,7 +11,7 @@
 -behaviour(gen_event).
 
 %% API
--export([start_link/0, add_handler/1, message/1, join/1]).
+-export([start_link/0, add_handler/1, message/1, join/1, rename/2]).
 
 %% gen_event callbacks
 -export([init/1, handle_event/2, handle_call/2,
@@ -31,6 +31,8 @@ message(Msg) ->
 join(User) ->
     gen_event:notify(?SERVER, {join, User}).
 
+rename(User, NewUser) ->
+    gen_event:notify(?SERVER, {rename, User, NewUser}).
 
 %%--------------------------------------------------------------------
 %% @doc

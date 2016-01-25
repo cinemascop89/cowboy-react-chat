@@ -13,19 +13,21 @@ exports.Websocket = React.createClass({
         socket.onmessage = this.handleMessage;
         this.setState({socket: socket});
     },
-    sendJoin(username) {
+    sendEvent(type, payload) {
         var msg = JSON.stringify({
-            event: "join",
-            data: username
+            event: type,
+            data: payload
         });
         this.state.socket.send(msg);
     },
+    sendJoin(username) {
+        this.sendEvent("join", username);
+    },
     sendMessage(content) {
-        var msg = JSON.stringify({
-            event: "message",
-            data: content
-        });
-        this.state.socket.send(msg);
+        this.sendEvent("message", content);
+    },
+    sendRename(newUsername) {
+        this.sendEvent("rename", newUsername);
     },
     render: function() {
         return null;

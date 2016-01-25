@@ -70,6 +70,15 @@ html {
         float: left;
         text-align: right;
         font-weight: bold;
+
+        &:hover {
+          border: 1px solid $muted-color;
+        }
+
+        input {
+          text-align: inherit;
+          width: 100%;
+        }
       }
       input {
         height: 100%;

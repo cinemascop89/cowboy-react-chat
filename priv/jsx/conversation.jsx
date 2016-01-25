@@ -12,7 +12,8 @@ exports.Conversation = React.createClass({
                 <MessageHistory messages={this.props.history} />
                 <MessageInput
                     username={this.props.username}
-                    onSubmit={this.handleSubmit} />
+                    onSubmit={this.handleSubmit}
+                    onUsernameChange={this.props.onUsernameChange}/>
             </div>
         );
     }

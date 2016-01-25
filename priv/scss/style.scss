@@ -49,9 +49,10 @@ html {
         .author {
           word-wrap: break-word;
           display: inline-block;
-          width: 100px;
+          min-width: 100px;
           text-align: right;
           font-weight: bold;
+          padding-right: 5px;
         }
         .message {
         }
@@ -70,9 +71,11 @@ html {
         float: left;
         text-align: right;
         font-weight: bold;
+        padding-right: 5px;
+        border: 1px solid $background-color;
 
         &:hover {
-          border: 1px solid $muted-color;
+          border-color: $muted-color;
         }
 
         input {

@@ -36,9 +36,10 @@ html {
         .wrapper .conversation .messages .message .author {
           word-wrap: break-word;
           display: inline-block;
-          width: 100px;
+          min-width: 100px;
           text-align: right;
-          font-weight: bold; }
+          font-weight: bold;
+          padding-right: 5px; }
     .wrapper .conversation .message-input {
       position: absolute;
       bottom: 0;
@@ -49,9 +50,11 @@ html {
         display: inline-block;
         float: left;
         text-align: right;
-        font-weight: bold; }
+        font-weight: bold;
+        padding-right: 5px;
+        border: 1px solid #fff; }
         .wrapper .conversation .message-input .username:hover {
-          border: 1px solid #ccc; }
+          border-color: #ccc; }
         .wrapper .conversation .message-input .username input {
           text-align: inherit;
           width: 100%; }

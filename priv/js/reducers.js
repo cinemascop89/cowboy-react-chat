@@ -1,5 +1,6 @@
 var update = require('react-addons-update');
-import {USER_JOIN, USER_LEAVE, USER_MESSAGE, USER_RENAME} from './actions';
+import {USER_JOIN, USER_LEAVE, USER_MESSAGE, USER_RENAME,
+        USER_LIST} from './actions';
 
 var randomUsername = "user" + parseInt(Math.random()*10000).toString();
 
@@ -39,6 +40,10 @@ export function chatApp(state = initialState, action) {
         return update(state, {
             users: {$push: [action.username]}
         });
+    case USER_LIST:
+        return update(state, {
+            users: {$set: action.users}
+        })
     default:
         return state;
     }

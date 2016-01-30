@@ -37,6 +37,7 @@ leave(User) ->
 rename(User, NewUser) ->
     gen_event:notify(?SERVER, {rename, User, NewUser}).
 
+
 %%--------------------------------------------------------------------
 %% @doc
 %% Creates an event manager
@@ -87,7 +88,7 @@ init([Pid]) ->
 %% @end
 %%--------------------------------------------------------------------
 handle_event(Event, #state{ws_handler_pid=Pid}=State) ->
-    Pid ! Event,
+    chat_handler:cast(Pid, Event),
     {ok, State}.
 
 %%--------------------------------------------------------------------

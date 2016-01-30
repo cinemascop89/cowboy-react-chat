@@ -20211,10 +20211,12 @@ exports.userJoin = userJoin;
 exports.userLeave = userLeave;
 exports.addMessage = addMessage;
 exports.renameUser = renameUser;
+exports.userList = userList;
 var USER_JOIN = exports.USER_JOIN = 'CHAT_JOIN';
 var USER_LEAVE = exports.USER_LEAVE = 'CHAT_LEAVE';
 var USER_MESSAGE = exports.USER_MESSAGE = 'CHAT_MESSAGE';
 var USER_RENAME = exports.USER_RENAME = 'CHAT_RENAME';
+var USER_LIST = exports.USER_LIST = 'CHAT_LIST';
 
 function userJoin(username) {
     return {
@@ -20241,6 +20243,13 @@ function renameUser(oldName, newName) {
     return {
         type: USER_RENAME,
         oldName: oldName, newName: newName
+    };
+}
+
+function userList(users) {
+    return {
+        type: USER_LIST,
+        users: users
     };
 }
 
@@ -20319,6 +20328,8 @@ var Chat = _react2.default.createClass({
             dispatch((0, _actions.addMessage)(evt.data.content, evt.data.author, evt.data.timestamp));
         } else if (evt.event === "rename") {
             dispatch((0, _actions.renameUser)(evt.data.username, evt.data.newUsername));
+        } else if (evt.event === "user_list") {
+            dispatch((0, _actions.userList)(evt.data));
         }
     },
     handleConnect: function handleConnect() {
@@ -20661,6 +20672,10 @@ function chatApp() {
         case _actions.USER_JOIN:
             return update(state, {
                 users: { $push: [action.username] }
+            });
+        case _actions.USER_LIST:
+            return update(state, {
+                users: { $set: action.users }
             });
         default:
             return state;

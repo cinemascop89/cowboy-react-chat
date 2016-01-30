@@ -59,6 +59,9 @@ websocket_info({message, #message{timestamp=Timestamp,
 websocket_info({join, User}, Req, State) ->
     Encoded = encode_msg(join, User),
     {reply, {text, Encoded}, Req, State};
+websocket_info({leave, User}, Req, State) ->
+    Encoded = encode_msg(leave, User),
+    {reply, {text, Encoded}, Req, State};
 websocket_info({rename, User, NewUser}, Req, State) ->
     Message = #{<<"username">> => User,
                 <<"newUsername">> => NewUser},
@@ -67,7 +70,8 @@ websocket_info({rename, User, NewUser}, Req, State) ->
 websocket_info(_Info, Req, State) ->
     {ok, Req, State}.
 
-websocket_terminate(_Reason, _Req, _State) ->
+websocket_terminate(_Reason, _Req, #state{username=Username}) ->
+    chat_event_message:leave(Username),
     ok.
 
 

@@ -1,5 +1,5 @@
 var update = require('react-addons-update');
-import {USER_JOIN, USER_MESSAGE, USER_RENAME} from './actions';
+import {USER_JOIN, USER_LEAVE, USER_MESSAGE, USER_RENAME} from './actions';
 
 var randomUsername = "user" + parseInt(Math.random()*10000).toString();
 
@@ -27,6 +27,12 @@ export function chatApp(state = initialState, action) {
             users: {$apply: function(users)  {
                 return users.map((u) =>
                                  u === action.oldName ? action.newName : u);
+            }}
+        });
+    case USER_LEAVE:
+        return update(state, {
+            users: {$apply: function(users) {
+                return users.filter((u) => u !== action.username);
             }}
         });
     case USER_JOIN:

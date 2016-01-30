@@ -20208,15 +20208,24 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 exports.userJoin = userJoin;
+exports.userLeave = userLeave;
 exports.addMessage = addMessage;
 exports.renameUser = renameUser;
 var USER_JOIN = exports.USER_JOIN = 'CHAT_JOIN';
+var USER_LEAVE = exports.USER_LEAVE = 'CHAT_LEAVE';
 var USER_MESSAGE = exports.USER_MESSAGE = 'CHAT_MESSAGE';
 var USER_RENAME = exports.USER_RENAME = 'CHAT_RENAME';
 
 function userJoin(username) {
     return {
         type: USER_JOIN,
+        username: username
+    };
+}
+
+function userLeave(username) {
+    return {
+        type: USER_LEAVE,
         username: username
     };
 }
@@ -20303,6 +20312,8 @@ var Chat = _react2.default.createClass({
         var dispatch = this.props.dispatch;
         if (evt.event === "join") {
             dispatch((0, _actions.userJoin)(evt.data));
+        } else if (evt.event === "leave") {
+            dispatch((0, _actions.userLeave)(evt.data));
         } else if (evt.event === "message") {
             if (evt.data.author === this.props.username) return;
             dispatch((0, _actions.addMessage)(evt.data.content, evt.data.author, evt.data.timestamp));
@@ -20636,6 +20647,14 @@ function chatApp() {
                 users: { $apply: function $apply(users) {
                         return users.map(function (u) {
                             return u === action.oldName ? action.newName : u;
+                        });
+                    } }
+            });
+        case _actions.USER_LEAVE:
+            return update(state, {
+                users: { $apply: function $apply(users) {
+                        return users.filter(function (u) {
+                            return u !== action.username;
                         });
                     } }
             });

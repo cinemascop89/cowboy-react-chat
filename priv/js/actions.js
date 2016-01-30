@@ -1,11 +1,19 @@
 
 export const USER_JOIN = 'CHAT_JOIN';
+export const USER_LEAVE = 'CHAT_LEAVE';
 export const USER_MESSAGE = 'CHAT_MESSAGE';
 export const USER_RENAME = 'CHAT_RENAME';
 
 export function userJoin(username) {
     return {
         type: USER_JOIN,
+        username
+    };
+}
+
+export function userLeave(username) {
+    return {
+        type: USER_LEAVE,
         username
     };
 }

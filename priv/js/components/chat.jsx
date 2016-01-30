@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
-import {userJoin, addMessage, renameUser} from '../actions'
+import {userJoin, userLeave, addMessage, renameUser} from '../actions'
 var Conversation = require('./conversation.jsx').Conversation;
 var UserList = require('./user-list.jsx').UserList;
 var Websocket = require('./websocket.jsx').Websocket;
@@ -19,6 +19,8 @@ var Chat = React.createClass({
         var dispatch = this.props.dispatch;
         if (evt.event === "join") {
             dispatch(userJoin(evt.data));
+        } else if (evt.event === "leave") {
+            dispatch(userLeave(evt.data));
         } else if (evt.event === "message") {
             if (evt.data.author === this.props.username)
                 return;

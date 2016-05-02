@@ -20590,7 +20590,7 @@ exports.Websocket = React.createClass({
         this.props.onEvent(JSON.parse(event.data));
     },
     componentDidMount: function componentDidMount() {
-        var socket = new WebSocket("ws://127.0.0.1:8080/chat");
+        var socket = new WebSocket("ws://" + document.location.host + "/chat");
         socket.onopen = this.handleOpen;
         socket.onmessage = this.handleMessage;
         this.setState({ socket: socket });
